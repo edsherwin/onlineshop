@@ -1,15 +1,14 @@
 node{
 
-    stages('Parallel'){
-        stage('Build'){
-            parallel{
-                stage('Checkout'){
-                    git 'https://github.com/edsherwin/onlineshop.git'
+    stages('Parallel')
+    {
+        stage('Run') {
+            parallel {
+                stage ('Checkout') {
+                    agent any
                 }
-                stage('Scan'){
-                    docker.image('my-scanner-new').inside('-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""') {
-                    sh "/usr/local/bin/sonar-scanner"
-                    }
+                steps {
+                    git 'https://github.com/edsherwin/onlineshop.git'
                 }
             }
         }
