@@ -2,7 +2,7 @@ node{
 
     stage('SCM Checkout')
     {
-        git 'https://github.com/iamdevopstrainer/onlineshop.git'
+        git 'https://github.com/edsherwin/onlineshop.git'
     }
     
     stage('Run Docker Compose File')
@@ -14,7 +14,7 @@ node{
     
     stage('Push Docker Image to HUB')
     {
-        sh 'sudo docker push iamdevopstrainer/deployapp_web'
+        sh 'sudo docker push edsherwin/deployapp_web'
     }
     
 }
