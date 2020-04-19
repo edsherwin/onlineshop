@@ -3,11 +3,11 @@ node{
     stage('Parallel'){
         steps {
             parallel (
-                "Checkout" : {
+                'Checkout': {
                     git 'https://github.com/edsherwin/onlineshop.git'
                 },
                 {
-                "Scan" : {
+                'Scan': {
                     docker.image('my-scanner-new').inside('-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""') {
                     sh "/usr/local/bin/sonar-scanner"}
                     }
