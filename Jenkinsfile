@@ -1,10 +1,25 @@
 node{
 
-    stage('SCM Checkout')
+    stage('Source')
     {
-        git 'https://github.com/edsherwin/onlineshop.git'
+        parallel {
+            stage('Checkout')
+            {
+                git 'https://github.com/edsherwin/onlineshop.git'
+            }
+            stage('Scan')
+            {
+                docker.image('my-scanner-new').inside('-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""') {
+                sh "/usr/local/bin/sonar-scanner"
+                }
+            }
+
+        }
     }
-    
+    //
+    // {
+    //     git 'https://github.com/edsherwin/onlineshop.git'
+    // } 
     stage('Run Docker Compose File')
     {
         sh 'sudo docker-compose build'
