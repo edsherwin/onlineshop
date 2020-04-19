@@ -1,7 +1,7 @@
 node{
 
-    stage('Parallel')
-            parallel (
+    stage('Parallel'){
+        parallel (
                 'Checkout': {
                     git 'https://github.com/edsherwin/onlineshop.git'
                 },
@@ -13,6 +13,8 @@ node{
                 }
             )
     }
+    }
+            
     // {
     //     git 'https://github.com/edsherwin/onlineshop.git'
     // } 
