@@ -2,7 +2,8 @@ node{
 
     stage('Checkout')  
     {
-        git 'https://github.com/edsherwin/onlineshop.git'
+        git branch: "master", url: "https://github.com/edsherwin/onlineshop.git", credentialsId: "edsherwin"
+        //git 'https://github.com/edsherwin/onlineshop.git'
     } 
 
     stage('Run Docker Compose File')
